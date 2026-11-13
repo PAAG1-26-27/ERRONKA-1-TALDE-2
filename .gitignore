@@ -1,16 +1,14 @@
-﻿# NetBeans / Java
+# NetBeans / Java
 /build/
 /dist/
 /nbproject/private/
 *.class
-
 # Entornos e IDEs
 .idea/
 .vscode/
 *.log
 .DS_Store
 Thumbs.db
-
 # Maven / Access / sistema
 target/
 *.laccdb
