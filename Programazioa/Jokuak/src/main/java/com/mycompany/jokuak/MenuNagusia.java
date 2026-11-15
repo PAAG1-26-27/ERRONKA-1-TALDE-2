@@ -79,8 +79,8 @@ public class MenuNagusia
                     pantallaGarbitu();
 
 
-                    // TODO: Hiru Lerroan jokoa abiarazi.
-                    System.out.println("Hiru Lerroan: oraindik ez dago garatuta.");
+                    // Hiru Lerroan jokoa abiarazi.
+                    Hirulerroan.jokatu(sc);
 
                 }
                 break;

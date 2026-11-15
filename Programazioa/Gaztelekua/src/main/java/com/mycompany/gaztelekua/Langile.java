@@ -1,59 +1,51 @@
 package com.mycompany.gaztelekua;
 import java.time.LocalDate;
+//Langilearen postua eta arduradun egoera gordetzeko klasea.
 public class Langile extends Pertsona
 {
     private String LangileID = "";
     private String Postua = "";
     private boolean ArduraduaIzan = false;
+    //Eraikitzailea: objektuaren hasierako datuak prestatu.
     public Langile()
     {
         super();
     }//Langile
 
-    public Langile(Pertsona p)
+    //Eraikitzailea: jasotako datuak objektuan gorde.
+    //Eraikitzailea: jasotako datuak gorde; komunak gurasoari pasatu.
+    public Langile(String nan, String izen, String abi, String her, String hel, String kp, String tlf, LocalDate jd,
+            String email, String langileID, String postua, boolean arduraduna)
     {
-        super(p);
-    }//Langile
-
-    public Langile(String nan, String izen, String abi, String her, String hel, String kp, String tlf, LocalDate jd, String id, String pos)
-    {
-        super(nan, izen, abi, her, hel, kp, tlf, jd);
-        LangileID = id;
-        Postua = pos;
-    }//Langile
-
-    public Langile(String nan, String izen, String abi, String her, String hel, String kp, String tlf, LocalDate jd, String id, String pos, boolean ard)
-    {
-        this(nan, izen, abi, her, hel, kp, tlf, jd, id, pos);
-        setArduraduaIzan(ard);
+        super(nan, izen, abi, her, hel, kp, tlf, jd, email);
+        LangileID = langileID;
+        setPostua(postua);
+        setArduraduaIzan(arduraduna);
     }//Langile
 
     //___LangileID___
+    //LangileID datuaren balio berria gorde.
     public void setLangileID(String a)
     {
         LangileID = a;
     }//setLangileID
 
-    //___LangileID___
-    public void setLangileID()
-    {
-        String balioa = MetodoPraktikoak.HauIrakurri("LangileID: ");
-        setLangileID(balioa);
-    }//setLangileID
-
     //___LangileIDBalioa___
+    //LangileID datuaren balioa bueltatu, pantailan erakutsi gabe.
     public String getLangileIDBalioa()
     {
         return LangileID;
     }//getLangileIDBalioa
 
     //___LangileID___
+    //LangileID datua pantailan erakutsi.
     public void getLangileID()
     {
         System.out.println("LangileID: \u001B[34m" + LangileID + "\u001B[0m");
     }//getLangileID
 
     //___Postua___
+    //Postua datuaren balio berria gorde.
     public void setPostua(String a)
     {
         Postua = a;
@@ -63,26 +55,22 @@ public class Langile extends Pertsona
         }//if
     }//setPostua
 
-    //___Postua___
-    public void setPostua()
-    {
-        String balioa = MetodoPraktikoak.HauIrakurri("Postua: ");
-        setPostua(balioa);
-    }//setPostua
-
     //___PostuaBalioa___
+    //Postua datuaren balioa bueltatu, pantailan erakutsi gabe.
     public String getPostuaBalioa()
     {
         return Postua;
     }//getPostuaBalioa
 
     //___Postua___
+    //Postua datua pantailan erakutsi.
     public void getPostua()
     {
         System.out.println("Postua: \u001B[34m" + Postua + "\u001B[0m");
     }//getPostua
 
     //___ArduraduaIzan___
+    //ArduraduaIzan datuaren balio berria gorde.
     public void setArduraduaIzan(boolean a)
     {
         if (Postua.equals("Monitorea"))
@@ -95,26 +83,22 @@ public class Langile extends Pertsona
         }//else
     }//setArduraduaIzan
 
-    //___ArduraduaIzan___
-    public void setArduraduaIzan()
-    {
-        boolean balioa = MetodoPraktikoak.BaiEz(MetodoPraktikoak.teklatua, "Arduraduna da?");
-        setArduraduaIzan(balioa);
-    }//setArduraduaIzan
-
     //___ArduraduaIzanBalioa___
+    //ArduraduaIzan datuaren balioa bueltatu, pantailan erakutsi gabe.
     public boolean getArduraduaIzanBalioa()
     {
         return ArduraduaIzan;
     }//getArduraduaIzanBalioa
 
     //___ArduraduaIzan___
+    //ArduraduaIzan datua pantailan erakutsi.
     public void getArduraduaIzan()
     {
         System.out.println("ArduraduaIzan: \u001B[34m" + ArduraduaIzan + "\u001B[0m");
     }//getArduraduaIzan
 
     //___ALL___
+    //Datu guztiak erakutsi; klase hauek dituzten datuak ere gehitu.
     public void getALL()
     {
         super.getALL();
