@@ -1,0 +1,208 @@
+/* Webaren koloreak / Website colors */
+:root {
+  --purple: #7649ac;
+  --purple-dark: #54317c;
+  --lavender: #f0eaf7;
+  --background: #f9f8fc;
+  --text: #30263d;
+}
+
+/* Barruko tartea eta ertzak zabaleran sartzen dira / Include padding and borders in the width */
+
+* {
+  box-sizing: border-box;
+}
+
+/* Orriaren letra eta atzeko kolorea / Page font and background color */
+
+body {
+  margin: 0;
+  color: var(--text);
+  background: var(--background);
+  font: 16px/1.45 Arial, sans-serif;
+}
+
+/* Ezkutuko atalak ez dira erakusten / Do not show hidden sections */
+
+[hidden] {
+  display: none !important;
+}
+
+/* Botoien estiloa / Button styles */
+
+button {
+  padding: 6px 10px;
+  border: 1px solid #dcd1e8;
+  border-radius: 4px;
+  color: var(--purple-dark);
+  background: var(--lavender);
+  cursor: pointer;
+}
+
+/* Menua eta edukia zutabeetan / Menu and content in columns */
+
+.layout {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  grid-template-rows: auto 1fr auto;
+  min-height: 100vh;
+}
+
+/* Goiko barra / Top bar */
+
+.layout-top {
+  grid-column: 1 / -1;
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-height: 64px;
+  padding: 12px;
+  background: white;
+  border-bottom: 1px solid #dcd1e8;
+}
+
+.layout-languages {
+  display: flex;
+  gap: 4px;
+  margin-left: auto;
+}
+
+button[aria-pressed="true"] {
+  color: white;
+  background: var(--purple);
+}
+
+/* Alboko menua / Side menu */
+
+.layout-side {
+  position: sticky;
+  top: 64px;
+  align-self: start;
+  width: 220px;
+  height: calc(100vh - 64px);
+  padding: 16px;
+  color: white;
+  background: var(--purple-dark);
+}
+
+.layout-side nav {
+  display: grid;
+  gap: 8px;
+}
+
+.layout-side a {
+  padding: 12px;
+  color: inherit;
+  text-decoration: none;
+  border-radius: 4px;
+}
+
+.layout-side a[aria-current="page"] {
+  color: var(--purple-dark);
+  background: var(--lavender);
+}
+
+/* Eduki nagusia / Main content */
+
+.layout-main {
+  grid-column: 2;
+  grid-row: 2;
+  padding: 24px;
+}
+
+h1 {
+  margin: 0 0 24px;
+  padding: 12px 16px;
+  color: white;
+  background: var(--purple);
+  border-radius: 6px;
+}
+
+/* Koadroak zutabeetan jartzen dira / Put the boxes in columns */
+
+.layout-columns,
+.layout-cards {
+  display: grid;
+  gap: 20px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.layout-cards {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+/* Edukia sartzeko koadroak / Boxes for the content */
+
+.layout-box {
+  min-height: 150px;
+  padding: 20px;
+  background: var(--lavender);
+  border: 1px solid #dcd1e8;
+  border-radius: 6px;
+}
+
+/* Orriaren oina / Page footer */
+
+.layout-footer {
+  grid-column: 1 / -1;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 8px 16px;
+  padding: 8px 12px;
+  background: var(--lavender);
+  font-size: 13px;
+}
+
+.layout-footer nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+a {
+  color: var(--purple-dark);
+}
+
+/* Pantaila txikietarako estiloak / Styles for small screens */
+
+@media (max-width: 700px) {
+  .layout {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: auto auto 1fr auto;
+  }
+
+  .layout-top {
+    flex-wrap: wrap;
+  }
+
+  .layout-side {
+    grid-row: 2;
+    position: static;
+    width: 100%;
+    height: auto;
+  }
+
+  .layout-side nav {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .layout-main {
+    grid-column: 1;
+    grid-row: 3;
+    padding: 16px;
+  }
+
+  .layout-columns,
+  .layout-cards {
+    grid-template-columns: 1fr;
+  }
+
+  .layout-footer {
+    grid-row: 4;
+  }
+}
