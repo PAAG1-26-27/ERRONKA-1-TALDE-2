@@ -194,7 +194,7 @@ public class Harri_orri_ar {//Harri-orri-arr jokoa
             System.out.print("\nIdatzi erantzuna: ");
             aukera = sc.nextInt();
 
-            // Errondetako puntuak eta erronda kopurua zerora itzultzen dira.
+            sc.nextLine(); // nextInt()-ek utzitako lerro-saltoa garbitzen da (MenuNagusiak nextLine() erabiltzen du). Errondetako puntuak eta erronda kopurua zerora itzultzen dira.
             // Partidetako puntuazio orokorra mantentzen da.
             erronda_p_j= 0;
             erronda_p_o= 0;
