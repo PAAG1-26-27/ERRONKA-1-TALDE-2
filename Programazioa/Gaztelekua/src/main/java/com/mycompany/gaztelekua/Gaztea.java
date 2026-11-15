@@ -1,148 +1,100 @@
 package com.mycompany.gaztelekua;
 import java.time.LocalDate;
+//Gaztearen datuak eta bazkide egoera gordetzeko klasea.
 public class Gaztea extends Pertsona
 {
     private boolean BazkideIzan = false;
     private String BazkideID = "";
-    private String TutoreID = "Tutore barik";
     private double UrtekoKuota = 0.0;
+    //Eraikitzailea: objektuaren hasierako datuak prestatu.
     public Gaztea()
     {
         super();
     }//Gaztea
 
-    public Gaztea(Pertsona p)
+    //Eraikitzailea: jasotako datuak objektuan gorde.
+    //Eraikitzailea: jasotako datuak gorde; komunak gurasoari pasatu.
+    public Gaztea(String nan, String izen, String abi, String her, String hel, String kp, String tlf, LocalDate jd,
+            String email, boolean bazkide, String bazkideID)
     {
-        super(p);
-    }//Gaztea
-
-    public Gaztea(String nan, String izen, String abi, String her, String hel, String kp, String tlf, LocalDate jd, boolean bazk)
-    {
-        super(nan, izen, abi, her, hel, kp, tlf, jd);
-        BazkideIzan = bazk;
-    }//Gaztea
-
-    public Gaztea(String nan, String izen, String abi, String her, String hel, String kp, String tlf, LocalDate jd, boolean bazk, String id, double kuota)
-    {
-        this(nan, izen, abi, her, hel, kp, tlf, jd, bazk);
-        BazkideID = id;
-        setUrtekoKuota(kuota);
+        super(nan, izen, abi, her, hel, kp, tlf, jd, email);
+        setBazkideIzan(bazkide);
+        BazkideID = bazkideID;
     }//Gaztea
 
     //___BazkideIzan___
+    //BazkideIzan datuaren balio berria gorde.
     public void setBazkideIzan(boolean a)
     {
         BazkideIzan = a;
-    }//setBazkideIzan
-
-    //___BazkideIzan___
-    public void setBazkideIzan()
-    {
-        boolean balioa = MetodoPraktikoak.BaiEz(MetodoPraktikoak.teklatua, "Bazkidea da?");
-        BazkideIzan = balioa;
+        //Bazkideen urteko kuota beti 10 da; ez bazkideek ez dute kuotarik.
+        if (BazkideIzan)
+        {
+            UrtekoKuota = 10;
+        }//if
+        else
+        {
+            UrtekoKuota = 0;
+        }//else
     }//setBazkideIzan
 
     //___BazkideIzanBalioa___
+    //BazkideIzan datuaren balioa bueltatu, pantailan erakutsi gabe.
     public boolean getBazkideIzanBalioa()
     {
         return BazkideIzan;
     }//getBazkideIzanBalioa
 
     //___BazkideIzan___
+    //BazkideIzan datua pantailan erakutsi.
     public void getBazkideIzan()
     {
         System.out.println("BazkideIzan: \u001B[34m" + BazkideIzan + "\u001B[0m");
     }//getBazkideIzan
 
     //___BazkideID___
+    //BazkideID datuaren balio berria gorde.
     public void setBazkideID(String a)
     {
         BazkideID = a;
     }//setBazkideID
 
-    //___BazkideID___
-    public void setBazkideID()
-    {
-        String balioa = MetodoPraktikoak.HauIrakurri("BazkideID: ");
-        setBazkideID(balioa);
-    }//setBazkideID
-
     //___BazkideIDBalioa___
+    //BazkideID datuaren balioa bueltatu, pantailan erakutsi gabe.
     public String getBazkideIDBalioa()
     {
         return BazkideID;
     }//getBazkideIDBalioa
 
     //___BazkideID___
+    //BazkideID datua pantailan erakutsi.
     public void getBazkideID()
     {
         System.out.println("BazkideID: \u001B[34m" + BazkideID + "\u001B[0m");
     }//getBazkideID
 
-    //___UrtekoKuota___
-    public void setUrtekoKuota(double a)
-    {
-        UrtekoKuota = a;
-    }//setUrtekoKuota
-
-    //___UrtekoKuota___
-    public void setUrtekoKuota()
-    {
-        double kuota = MetodoPraktikoak.SartuDezimala(MetodoPraktikoak.teklatua, "UrtekoKuota", UrtekoKuota);
-        UrtekoKuota = kuota;
-    }//setUrtekoKuota
-
     //___UrtekoKuotaBalioa___
+    //UrtekoKuota datuaren balioa bueltatu, pantailan erakutsi gabe.
     public double getUrtekoKuotaBalioa()
     {
         return UrtekoKuota;
     }//getUrtekoKuotaBalioa
 
     //___UrtekoKuota___
+    //UrtekoKuota datua pantailan erakutsi.
     public void getUrtekoKuota()
     {
         System.out.println("UrtekoKuota: \u001B[34m" + UrtekoKuota + "\u001B[0m");
     }//getUrtekoKuota
 
     //___ALL___
+    //Datu guztiak erakutsi; klase hauek dituzten datuak ere gehitu.
     public void getALL()
     {
         super.getALL();
         getBazkideIzan();
         getBazkideID();
         getUrtekoKuota();
-        getTutoreID();
     }//getALL
 
-    //___TutoreID___
-    public void setTutoreID(String balioa)
-    {
-        if (balioa.trim().isEmpty())
-        {
-            TutoreID = "Tutore barik";
-        }//if
-        else
-        {
-            TutoreID = balioa;
-        }//else
-    }//setTutoreID
-
-    //___TutoreID___
-    public void setTutoreID()
-    {
-        String balioa = MetodoPraktikoak.HauIrakurri("TutoreID (Enter = Tutore barik): ");
-        setTutoreID(balioa);
-    }//setTutoreID
-
-    //___TutoreIDBalioa___
-    public String getTutoreIDBalioa()
-    {
-        return TutoreID;
-    }//getTutoreIDBalioa
-
-    //___TutoreID___
-    public void getTutoreID()
-    {
-        System.out.println("TutoreID: \u001B[34m" + TutoreID + "\u001B[0m");
-    }//getTutoreID
 }//Gaztea

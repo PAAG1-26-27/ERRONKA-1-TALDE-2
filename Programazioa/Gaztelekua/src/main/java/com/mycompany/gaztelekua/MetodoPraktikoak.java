@@ -8,12 +8,14 @@ import java.time.format.DateTimeParseException;
 import java.time.format.ResolverStyle;
 
 // Gaztelekuan eta beste programetan berrerabiltzeko metodo praktikoak.
+//Sarrerak irakurri eta beste klaseetan berrerabiltzeko metodoak.
 public class MetodoPraktikoak
 {
     public static Scanner teklatua = new Scanner(System.in);
     private static DateTimeFormatter formato = DateTimeFormatter.ofPattern("uuuu/MM/dd").withResolverStyle(ResolverStyle.STRICT);
 
     //Testua irakurtzeko metodo sinplea
+    //Mezua erakutsi eta teklatutik irakurritako testua bueltatu.
     public static String HauIrakurri(Scanner sc, String mezua)
     {
         System.out.print(mezua);
@@ -23,6 +25,7 @@ public class MetodoPraktikoak
     }//HauIrakurri
 
     //Zenbaki bat irakurtzeko metodo sinplea
+    //Zenbaki osoa irakurri; oker sartuz gero berriro eskatu.
     public static int SartuZenbakia(Scanner sc, String mezua)
     {
         //Aldagaiak sortu eta hasierarazi
@@ -50,33 +53,7 @@ public class MetodoPraktikoak
         return zbk1;
     }//SartuZenbakia
 
-    //Data bat irakurtzeko metodoa (nahiak egindakua)
-    public static LocalDate SartuData(Scanner sc)
-    {
-        //Aldagaiak sortu eta hasierarazi
-        String sarrera;
-        LocalDate data = null;
-        boolean arazorik;
-        do
-        {
-            //Zenbaki egoki bat sartu arte errepikatu du eskaria
-            arazorik = false;
-            try
-            {
-                System.out.print("\nSartu data(uuuu/HH/ee) formatuan: ");
-                sarrera = sc.nextLine().trim();
-                data = LocalDate.parse(sarrera, formato);
-            }//try
-            catch (DateTimeParseException error)
-            {
-                System.out.println("Datarentzako formatu desegokia erabili duzu.");
-                arazorik = true;
-            }//catch
-        }//do
-        while (arazorik);
-        return data;
-    }//SartuData
-
+    //Lerro hutsak idatzi aurreko pantaila goian uzteko.
     public static void pantallaGarbitu()
     {
         //Pantaila garbitzen du
@@ -86,6 +63,7 @@ public class MetodoPraktikoak
         }//for
     }//pantallaGarbitu
 
+    //Bai edo ez irakurri; editatzean aurreko balioa mantendu daiteke.
     public static boolean BaiEz(Scanner sc, String mezua)
     {
         String erantzuna;
@@ -101,61 +79,79 @@ public class MetodoPraktikoak
         return erantzuna.equals("bai");
     }//BaiEz
 
-    public static String HauIrakurri(String mezua)
-    {
-        return HauIrakurri(teklatua, mezua);
-    }//HauIrakurri
-
-    public static String normalizatu(String testua)
+    //Testua letra xeheetara pasatu eta espazioak eta tabulazioak kendu.
+    public static String sarreraKonpondu(String testua)
     {
         return testua.toLowerCase().replace(" ", "").replace("\t", "");
-    }//normalizatu
+    }//sarreraKonpondu
 
+    //Ordua irakurri, formatua zuzena izan arte.
     public static LocalTime SartuOrdua(Scanner sc, String mezua, LocalTime aurrekoa)
     {
         DateTimeFormatter orduFormato = DateTimeFormatter.ofPattern("HH:mm").withResolverStyle(ResolverStyle.STRICT);
-        while (true)
+        LocalTime ordua = aurrekoa;
+        boolean orduZuzena = false;
+        do
         {
             String sarrera = HauIrakurri(sc, mezua + " (HH:mm) [" + aurrekoa + "]: ");
             if (sarrera.isEmpty())
             {
-                return aurrekoa;
+                orduZuzena = true;
             }//if
-            try
+            else
             {
-                return LocalTime.parse(sarrera, orduFormato);
-            }//try
-            catch (DateTimeParseException error)
-            {
-                System.out.println("Ordua ez da zuzena.");
-            }//catch
-        }//while
+                try
+                {
+                    ordua = LocalTime.parse(sarrera, orduFormato);
+                    orduZuzena = true;
+                }//try
+                catch (DateTimeParseException error)
+                {
+                    System.out.println("Ordua ez da zuzena.");
+                }//catch
+            }//else
+        }//do
+        while (!orduZuzena);
+        return ordua;
     }//SartuOrdua
 
+    //Zenbaki hamartarra irakurri, balio negatiborik onartu gabe.
     public static double SartuDezimala(Scanner sc, String mezua, double aurrekoa)
     {
-        while (true)
+        double balioa = aurrekoa;
+        boolean balioZuzena = false;
+        do
         {
             String sarrera = HauIrakurri(sc, mezua + " [" + aurrekoa + "]: ");
             if (sarrera.isEmpty())
             {
-                return aurrekoa;
+                balioa = aurrekoa;
+                balioZuzena = true;
             }//if
-            try
+            else
             {
-                sarrera = sarrera.replace(',', '.');
-                double balioa = Double.parseDouble(sarrera);
-                if (balioa >= 0)
+                try
                 {
-                    return balioa;
+                    sarrera = sarrera.replace(',', '.');
+                    balioa = Double.parseDouble(sarrera);
+                    if (balioa >= 0)
+                    {
+                        balioZuzena = true;
+                    }//if
+                }//try
+                catch (NumberFormatException error)
+                {
+                }//catch
+                if (!balioZuzena)
+                {
+                    System.out.println("Sartu zero edo zenbaki positiboa.");
                 }//if
-            }//try
-            catch (NumberFormatException error)
-            {
-            }//catch
-            System.out.println("Sartu zero edo zenbaki positiboa.");
-        }//while
+            }//else
+        }//do
+        while (!balioZuzena);
+        return balioa;
     }//SartuDezimala
+    //Testua irakurri; Enter sakatuz gero aurreko testua mantendu.
     public static String PertsonaBerba(Scanner sc, String mezua, String aurrekoa)
     {
         String sarrera = HauIrakurri(sc, mezua + " [" + aurrekoa + "]: ");
@@ -166,6 +162,7 @@ public class MetodoPraktikoak
         return sarrera;
     }//PertsonaBerba
 
+    //Derrigorrezko testua eskatu hutsik ez dagoen arte.
     public static String DerrigorrezkoBerba(Scanner sc, String mezua)
     {
         String sarrera;
@@ -181,13 +178,16 @@ public class MetodoPraktikoak
         return sarrera;
     }//DerrigorrezkoBerba
 
+    //Bai edo ez irakurri; editatzean aurreko balioa mantendu daiteke.
     public static boolean BaiEz(Scanner sc, String izena, boolean aurrekoa, boolean berria)
     {
         if (berria)
         {
             return BaiEz(sc, izena);
         }//if
-        while (true)
+        boolean balioa = aurrekoa;
+        boolean erantzunZuzena = false;
+        do
         {
             String aurrekoTestua = "ez";
             if (aurrekoa)
@@ -197,20 +197,28 @@ public class MetodoPraktikoak
             String s = HauIrakurri(sc, izena + " (bai/ez, hutsik = mantendu) [" + aurrekoTestua + "]: ");
             if (s.isEmpty())
             {
-                return aurrekoa;
+                erantzunZuzena = true;
             }//if
-            if (s.equalsIgnoreCase("bai"))
+            else if (s.equalsIgnoreCase("bai"))
             {
-                return true;
-            }//if
-            if (s.equalsIgnoreCase("ez"))
+                balioa = true;
+                erantzunZuzena = true;
+            }//else if
+            else if (s.equalsIgnoreCase("ez"))
             {
-                return false;
-            }//if
-            System.out.println("Balio okerra.");
-        }//while
+                balioa = false;
+                erantzunZuzena = true;
+            }//else if
+            else
+            {
+                System.out.println("Balio okerra.");
+            }//else
+        }//do
+        while (!erantzunZuzena);
+        return balioa;
     }//BaiEz
 
+    //Erabiltzailearen zenbakia zerrendaren posiziora pasatu: 1etik 0ra.
     public static int Aukeratu(Scanner sc, int kopurua)
     {
         int aukera;
@@ -232,9 +240,12 @@ public class MetodoPraktikoak
         return aukera - 1;
     }//Aukeratu
 
+    //Data irakurri; Enter sakatuz gero aurreko data mantendu.
     public static LocalDate SartuData(Scanner sc, String mezua, LocalDate aurrekoa)
     {
-        while (true)
+        LocalDate data = aurrekoa;
+        boolean dataZuzena = false;
+        do
         {
             String aurrekoTestua = "";
             if (aurrekoa != null)
@@ -244,19 +255,27 @@ public class MetodoPraktikoak
             String sarrera = HauIrakurri(sc, mezua + " (uuuu/MM/dd) [" + aurrekoTestua + "]: ");
             if (sarrera.isEmpty())
             {
-                return aurrekoa;
+                dataZuzena = true;
             }//if
-            try
+            else
             {
-                return LocalDate.parse(sarrera, formato);
-            }//try
-            catch (DateTimeParseException error)
-            {
-                System.out.println("Data ez da zuzena.");
-            }//catch
-        }//while
+                try
+                {
+                    data = LocalDate.parse(sarrera, formato);
+                    dataZuzena = true;
+                }//try
+                catch (DateTimeParseException error)
+                {
+                    System.out.println("Data ez da zuzena.");
+                }//catch
+            }//else
+        }//do
+        while (!dataZuzena);
+        return data;
     }//SartuData
 
+    //HauIrakurri baina enter jasotzeko bakarrik (itxaroteko)
+    //Enter sakatu arte itxaron, emaitza irakurtzeko denbora emanez.
     public static void EnterItxaron(Scanner sc)
     {
         HauIrakurri(sc, "\nSakatu Enter jarraitzeko: ");

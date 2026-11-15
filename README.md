@@ -10,6 +10,7 @@ Gaztelekua kudeatzeko proiektua: Java jokuak, kudeaketa-aplikazioa, datu-basea e
 |---|---|
 | `Programazioa/Jokuak` | Jokuen menu nagusia (Java, Maven). Lau joku: Zenbakia asmatu, Hiru lerroan, Harri-Orri-Ar eta Ontziak hondoratu. |
 | `Programazioa/Gaztelekua` | Gaztelekuaren kudeaketa-aplikazioa (Pertsona, Ekintza eta azpiklaseak). |
+| `GAZTELEKU_Web` | Gaztelekuaren webgunea (HTML, CSS eta JavaScript). |
 | `Diagramak/Klase_diagramak` | Klase-diagramak. |
 | `Datu_basea` | Entitate-erlazio diagrama eta datu-basearen oharrak. |
 | `Dokumentazioa` | Dokumentuen zerrenda eta non dauden. |
@@ -21,7 +22,7 @@ Menu nagusiko aukerak (`MenuNagusia.java`):
 | Aukera | Jokoa | Egilea | Egoera |
 |---|---|---|---|
 | 1 | Zenbakia asmatu | Aitor Burunza | Menuan konektatuta |
-| 2 | Hiru lerroan | Huzaima Muhammad | `Hirulerroan.java` badago, baina menuan oraindik konektatu gabe |
+| 2 | Hiru lerroan | Huzaima Muhammad | Menuan konektatuta |
 | 3 | Harri-Orri-Ar | Nora Ortiz de Lejarazu | Menuan konektatuta |
 | 4 | Ontziak hondoratu | Jon Ander Estévez | Menuan konektatuta |
 
