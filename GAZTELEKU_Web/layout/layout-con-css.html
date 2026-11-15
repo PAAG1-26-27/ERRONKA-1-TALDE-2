@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="eu">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Gazteleku · Layout</title>
+  <!-- Estiloen fitxategia kargatzen da / Load the style file -->
+  <link rel="stylesheet" href="../css/layout.css">
+</head>
+<body>
+  <div class="layout">
+    <!-- Goiko barra / Top bar -->
+    <header class="layout-top">
+      <button id="layout-menu-btn" type="button" aria-controls="layout-side" aria-expanded="true" aria-label="Menua">☰</button>
+      <a href="#home"><img src="../images/Gazteleku_Logo.png" alt="Gazteleku" width="140" height="19"></a>
+      <div class="layout-languages">
+        <button type="button" data-lang="eu" lang="eu" aria-pressed="true">EUS</button>
+        <button type="button" data-lang="en" lang="en" aria-pressed="false">ENG</button>
+      </div>
+      <a href="#login" data-i18n="account">Kontua</a>
+    </header>
+
+    <!-- Alboko menua / Side menu -->
+    <aside class="layout-side" id="layout-side">
+      <nav>
+        <a href="#home" data-i18n="home">Hasiera</a>
+        <a href="#events" data-i18n="events">Ekintzak</a>
+        <a href="#join" data-i18n="join">Izen ematea</a>
+        <a href="#about" data-i18n="about">Guri buruz</a>
+        <a href="#contact" data-i18n="contact">Kontaktua</a>
+        <a href="#membership" data-i18n="membership">Bazkidetza</a>
+      </nav>
+    </aside>
+
+    <main class="layout-main">
+      <!-- Hasierako atala / Home section -->
+      <section data-panel="home">
+        <h1 data-i18n="home">Hasiera</h1>
+        <div class="layout-columns">
+          <div class="layout-box"><h2>Gazteleku</h2><p data-i18n="content">Edukiaren eremua</p></div>
+          <div class="layout-box"><h2 data-i18n="calendar">Egutegia</h2></div>
+        </div>
+        <h2 data-i18n="events">Ekintzak</h2>
+        <div class="layout-cards">
+          <article class="layout-box" data-i18n="event_card">Ekintzaren txartela</article>
+          <article class="layout-box" data-i18n="event_card">Ekintzaren txartela</article>
+          <article class="layout-box" data-i18n="event_card">Ekintzaren txartela</article>
+        </div>
+        <p><a href="#events" data-i18n="all_events">Ikusi ekintza guztiak</a></p>
+      </section>
+
+      <!-- Ekintzen atala / Activities section -->
+      <section data-panel="events" hidden>
+        <h1 data-i18n="events">Ekintzak</h1>
+        <div class="layout-columns">
+          <div class="layout-box"><h2 data-i18n="weekend">Asteburukoak</h2><p data-i18n="content">Edukiaren eremua</p></div>
+          <div class="layout-box"><h2 data-i18n="summer">Udakoak</h2><p data-i18n="content">Edukiaren eremua</p></div>
+        </div>
+        <p><a href="#join" data-i18n="join">Izen ematea</a></p>
+      </section>
+
+      <!-- Izena emateko atala / Registration section -->
+      <section data-panel="join" hidden>
+        <h1 data-i18n="join">Izen ematea</h1>
+        <div class="layout-box"><h2 data-i18n="registration">Izen-ematearen eremua</h2><p data-i18n="content">Edukiaren eremua</p></div>
+      </section>
+
+      <!-- Taldearen atala / Team section -->
+      <section data-panel="about" hidden>
+        <h1 data-i18n="about">Guri buruz</h1>
+        <h2 data-i18n="staff">Langileak</h2>
+        <div class="layout-cards">
+          <div class="layout-box" data-i18n="staff_card">Langilearen txartela</div>
+          <div class="layout-box" data-i18n="staff_card">Langilearen txartela</div>
+          <div class="layout-box" data-i18n="staff_card">Langilearen txartela</div>
+        </div>
+      </section>
+
+      <!-- Kontaktuaren atala / Contact section -->
+      <section data-panel="contact" hidden>
+        <h1 data-i18n="contact">Kontaktua</h1>
+        <div class="layout-columns">
+          <div class="layout-box"><h2 data-i18n="suggestion">Iradokizuna</h2></div>
+          <div class="layout-box"><h2 data-i18n="location">Kokapena</h2></div>
+        </div>
+      </section>
+
+      <!-- Bazkidearen eta tutorearen datuak / Member and tutor details -->
+      <section data-panel="membership" hidden>
+        <h1 data-i18n="membership">Bazkidetza</h1>
+        <div class="layout-columns">
+          <div class="layout-box"><h2 data-i18n="profile">Bazkidearen datuak</h2></div>
+          <div class="layout-box"><h2 data-i18n="tutor">Tutorea</h2></div>
+        </div>
+      </section>
+
+      <!-- Saioa hasteko atala / Login section -->
+      <section data-panel="login" hidden>
+        <h1 data-i18n="login">Saioa hasi</h1>
+        <div class="layout-box">
+          <p data-i18n="content">Edukiaren eremua</p>
+          <a href="#signup" data-i18n="signup">Eman izena</a>
+          <a href="#settings" data-i18n="settings">Ezarpenak</a>
+        </div>
+      </section>
+
+      <!-- Kontua sortzeko atala / Sign-up section -->
+      <section data-panel="signup" hidden>
+        <h1 data-i18n="signup">Eman izena</h1>
+        <div class="layout-box"><p data-i18n="content">Edukiaren eremua</p></div>
+      </section>
+
+      <!-- Kontuaren ezarpenak / Account settings -->
+      <section data-panel="settings" hidden>
+        <h1 data-i18n="settings">Ezarpenak</h1>
+        <div class="layout-box"><p data-i18n="content">Edukiaren eremua</p></div>
+      </section>
+    </main>
+
+    <!-- Orriaren oina / Page footer -->
+    <footer class="layout-footer">
+      <span data-i18n="credit">Kodekinek garatua</span>
+      <img src="../images/logo.png" alt="Kodekin" width="80" height="17">
+      <nav>
+        <a href="../index.html" data-i18n="full_site">Web osoa</a>
+        <a href="layout-sin-css.html" data-i18n="without_css">CSS gabe</a>
+        <a href="layout-con-css.html" data-i18n="with_css">CSSrekin</a>
+      </nav>
+    </footer>
+  </div>
+  <!-- JavaScript fitxategia kargatzen da / Load the JavaScript file -->
+  <script src="../js/layout.js"></script>
+</body>
+</html>
